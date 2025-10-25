@@ -57,7 +57,7 @@ export default function Home() {
     const promise = fetchKernalDensityPrediction(lat, lng).then()
     promise.then((kernal_density_predicition) => {
       console.log(kernal_density_predicition)
-      setCurrPrediction(kernal_density_predicition.prediction)
+      setCurrPrediction(kernal_density_predicition.risk_score)
     })
   }
 
