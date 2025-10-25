@@ -19,7 +19,8 @@ export default function Home() {
   const [center, setCenter] = useState<[number, number]>(INITIAL_CENTER)
   const [zoom, setZoom] = useState<number>(INITIAL_ZOOM)
 
-  const [currPrediction, setCurrPrediction] = useState<number>(0.0)
+  const [currRiskScore, setCurrRiskScore] = useState<number>(0.0)
+  const [currPrediction, setCurrPrediction] = useState<string>("NA")
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -57,7 +58,8 @@ export default function Home() {
     const promise = fetchKernalDensityPrediction(lat, lng).then()
     promise.then((kernal_density_predicition) => {
       console.log(kernal_density_predicition)
-      setCurrPrediction(kernal_density_predicition.risk_score)
+      setCurrPrediction(kernal_density_predicition.risk_class)
+      setCurrRiskScore(kernal_density_predicition.risk_score)
     })
   }
 
@@ -65,7 +67,8 @@ export default function Home() {
     <>
       <div id="map-container" ref={mapContainerRef} />  
       <div className="sidebar">
-        <h3>Collision Risk Score: {currPrediction.toFixed(2)}</h3>
+        <h3>Collision Risk Score: {currRiskScore}</h3>
+        <h3>Collision Risk: {currPrediction}</h3>
         Longitude: {center[0].toFixed(4)} | Latitude: {center[1].toFixed(4)} | Zoom: {zoom.toFixed(2)}
       </div>
     </>
