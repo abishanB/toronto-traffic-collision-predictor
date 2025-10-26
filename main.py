@@ -14,10 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-load_model_obj: dict = joblib.load("./KernalDensityModel/model.joblib")
+load_model_obj: dict = joblib.load("./KernalDensityModel/kd_model.joblib")
 kd_model = load_model_obj["model"]
-kd_min_risk: int = 0
-kd_max_risk: int = 165
+kd_min_risk: int = load_model_obj["min_risk"]
+kd_max_risk: int = load_model_obj["max_risk"]
 
 
 class InputData(BaseModel):

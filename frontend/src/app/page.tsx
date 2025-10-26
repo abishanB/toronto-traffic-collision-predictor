@@ -33,7 +33,7 @@ export default function Home() {
       style: "mapbox://styles/mapbox/streets-v11", // required
       center: INITIAL_CENTER, // Toronto
       zoom: INITIAL_ZOOM,
-      maxBounds: MAP_BOUNDS
+  
     });
     mapRef.current = map; // assign to ref once created
 

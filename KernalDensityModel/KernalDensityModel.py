@@ -49,11 +49,11 @@ def getMinMax(coords):
 
 
 # min_val, max_val, avg_val = getMinMax(coords)
-min_val, max_val = 0, 210
+min_val, max_val = 0, 140
 model_data = {
     "model": kde,
     "min_risk": min_val,
     "max_risk": max_val,
 }
 
-joblib.dump(model_data, "model.joblib")
+joblib.dump(model_data, "./KernalDensityModel/kd_model.joblib")
