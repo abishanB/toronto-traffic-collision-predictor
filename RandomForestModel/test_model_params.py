@@ -3,8 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
 import pandas as pd
-import numpy as np
-
+# todo switch to pipeline encoding
 df = pd.read_csv("./RandomForestModel/ksi_collisions.csv")
 categorical_features = ['LIGHT', 'VISIBILITY', 'ROAD_CONDITION', 'DOW',
                         'TIME_OF_DAY', 'SEASON', 'VEHICLE_TYPE', 'DRIVER_ACTION', 'IMPACT_TYPE']
@@ -18,11 +17,11 @@ y = df['SEVERE_COLLISION']
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=42)
 params = {
-    'n_estimators': list(range(10, 70, 10)),
-    'max_depth': list(range(4, 20, 2)),
+    'n_estimators': list(range(5, 70, 5)),
+    'max_depth': list(range(3, 40, 1)),
     'min_samples_split': [2],
     'min_samples_leaf': [1],
-    'max_features': ['sqrt', None]
+    'max_features': ['sqrt']
 }
 
 rf = RandomForestClassifier(random_state=42)
