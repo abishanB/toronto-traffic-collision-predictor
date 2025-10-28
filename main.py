@@ -31,9 +31,9 @@ def root():
 
 
 def classify_risk(score: float) -> str:
-  if score < 40:
+  if score < 15:
     return "Low Risk"
-  elif score < 75:
+  elif score < 60:
     return "Medium Risk"
   else:
     return "High Risk"

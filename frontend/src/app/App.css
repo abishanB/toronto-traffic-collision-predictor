@@ -15,7 +15,7 @@
 .mapboxgl-canvas {
   cursor: crosshair !important;
 }
-.sidebar {
+.temp {
   background-color: rgb(35 55 75 / 90%);
   color: #fff;
   padding: 6px 12px;
@@ -26,4 +26,23 @@
   left: 0;
   margin: 16px;
   border-radius: 4px;
+}
+
+.marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marker.low {
+  background: url("/low-marker.svg") center / contain no-repeat;
+}
+
+.marker.medium {
+  background: url("/medium-marker.svg") center / contain no-repeat;
+}
+
+.marker.high {
+  background: url("/high-marker.svg") center / contain no-repeat;
 }
