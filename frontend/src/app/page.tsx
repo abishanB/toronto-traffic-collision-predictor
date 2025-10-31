@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import CollisionRisk from "./collisionRisk";
+import SeverityRisk from "./severityRisk";  
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
 import { fetchHood } from './fetchPredictions';
@@ -27,7 +28,7 @@ export default function Home() {
   const [currRiskScore, setCurrRiskScore] = useState<number>(0.0);
   const [currPrediction, setCurrPrediction] = useState<string>("NA");
 
-  const [currHood, setCurrHood] = useState<String>("NA");
+  const [currHood, setCurrHood] = useState<string>("NA");
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -86,7 +87,8 @@ export default function Home() {
           setCurrPrediction(prediction);
           setCurrRiskScore(score);
         }}
-       />
+      />
+      <SeverityRisk neighbourhood={currHood} />
     </> 
   );
 }

@@ -64,7 +64,7 @@ export default function CollisionRisk({
   };
 
   return (
-    <div className={styles['collision-risk']}>
+    <div className={`container ${styles.collisionRisk}`}>
       <h4>Collision Risk</h4>
       <div className={styles['coordinate-inputs']}>
         <div className={styles['input-group']}>

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import predict, neighbourhood
+from routes import neighbourhood, predict_kernal_density, predict_random_forest
 
 app: FastAPI = FastAPI()
 
@@ -18,5 +18,6 @@ def root():
   return {"OK!"}
 
 
-app.include_router(predict.router)
+app.include_router(predict_kernal_density.router)
+app.include_router(predict_random_forest.router)
 app.include_router(neighbourhood.router)

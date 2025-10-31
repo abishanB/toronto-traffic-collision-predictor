@@ -1,0 +1,57 @@
+.severityRisk {
+  top: 20%;
+  right: 0;
+}
+
+.form {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.inputGroup {
+  flex: 0 0 calc(50% - 4px); /* 50% width minus half the gap */
+  box-sizing: border-box;
+}
+
+.fullWidth {
+  flex: 0 0 100%; /* Full width for the neighbourhood field */
+}
+
+.label {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.select:disabled {
+  background-color: #f5f5f5;
+  color: #666;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+.select option {
+  color: #333;
+  background-color: white;
+  padding: 4px;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}

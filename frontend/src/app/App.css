@@ -46,3 +46,44 @@
 .marker.high {
   background: url("/high-marker.svg") center / contain no-repeat;
 }
+
+
+.predict-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.predict-button:hover {
+  background-color: #357abd;
+}
+
+.predict-button:active {
+  background-color: #2d6da3;
+}
+
+.container {
+  background-color: rgb(35 55 75 / 90%);
+  width: 20vw;
+  color: #fff;
+  padding: 12px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 20%;
+
+  right: 0;
+  margin: 16px;
+  border-radius: 8px;
+}
+
+.container h4 {
+  text-align: center;
+}
