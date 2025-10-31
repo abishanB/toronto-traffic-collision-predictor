@@ -66,7 +66,7 @@ export default function CollisionRisk({
   return (
     <div className={`container ${styles.collisionRisk}`}>
       <h4>Collision Risk</h4>
-      <div className={styles['coordinate-inputs']}>
+      <div className={styles.latLongGroup}>
         <div className={styles['input-group']}>
           <label htmlFor="latitude">Latitude:</label>
           <input
@@ -91,13 +91,14 @@ export default function CollisionRisk({
             placeholder="Enter longitude"
           />
         </div>
-        <button 
-          className={styles['predict-button']}
+      
+      </div>
+       <button 
+          className='predict-button'
           onClick={handlePredict}
         >
           Predict Collision Risk
         </button>
-      </div>
     </div>
   )
 }
