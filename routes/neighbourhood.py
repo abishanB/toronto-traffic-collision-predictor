@@ -12,7 +12,7 @@ class Coordinates(BaseModel):
 
 
 neighbourhoods = gpd.read_file(
-  "toronto_neigbourhoods.geojson")
+  "./routes/toronto_neigbourhoods.geojson")
 
 if neighbourhoods.crs is None or neighbourhoods.crs.to_string() != "EPSG:4326":
   neighbourhoods = neighbourhoods.to_crs(epsg=4326)
