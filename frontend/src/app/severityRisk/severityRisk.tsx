@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import styles from './severityRisk.module.css';
-
+import { fetchSeverityRisk } from '../fetchPredictions';
 interface FormData {
-  light: string;
+  light_condition: string;
   visibility: string;
-  roadCondition: string;
-  dayOfWeek: string;
-  timeOfDay: string;
+  road_condition: string;
+  dow: string;
+  time_of_day: string;
   season: string;
-  vehicleType: string;
-  driverAction: string;
-  impactType: string;
-  ageRange: string;
+  vehicle_type: string;
+  driver_action: string;
+  impact_type: string;
+  age_range: string;
   neighbourhood: string;
 }
 
@@ -21,18 +21,19 @@ interface SeverityRiskProps {
 
 export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
   const [formData, setFormData] = useState<FormData>({
-    light: '',
+    light_condition: '',
     visibility: '',
-    roadCondition: '',
-    dayOfWeek: '',
-    timeOfDay: '',
+    road_condition: '',
+    dow: '',
+    time_of_day: '',
     season: '',
-    vehicleType: '',
-    driverAction: '',
-    impactType: '',
-    ageRange: '',
+    vehicle_type: '',
+    driver_action: '',
+    impact_type: '',
+    age_range: '',
     neighbourhood: neighbourhood
   });
+  const [prediction, setPrediction] = useState<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -50,10 +51,10 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
     }));
   }, [neighbourhood]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+    const prediction = await fetchSeverityRisk(formData);
+    setPrediction(prediction.severity_risk_class);
   };
 
   return (
@@ -75,14 +76,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
           />
         </div>
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="light">
+          <label className={styles.label} htmlFor="light_condition">
             Light Condition
           </label>
           <select
-            id="light"
-            name="light"
+            id="light_condition"
+            name="light_condition"
             className={styles.select}
-            value={formData.light}
+            value={formData.light_condition}
             onChange={handleChange}
           >
             <option value="">Select light condition</option>
@@ -111,14 +112,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="roadCondition">
+          <label className={styles.label} htmlFor="road_condition">
             Road Condition
           </label>
           <select
-            id="roadCondition"
-            name="roadCondition"
+            id="road_condition"
+            name="road_condition"
             className={styles.select}
-            value={formData.roadCondition}
+            value={formData.road_condition}
             onChange={handleChange}
           >
             <option value="">Select road condition</option>
@@ -129,14 +130,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="timeOfDay">
+          <label className={styles.label} htmlFor="time_of_day">
             Time of Day
           </label>
           <select
-            id="timeOfDay"
-            name="timeOfDay"
+            id="time_of_day"
+            name="time_of_day"
             className={styles.select}
-            value={formData.timeOfDay}
+            value={formData.time_of_day}
             onChange={handleChange}
           >
             <option value="">Select time of day</option>
@@ -148,14 +149,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="dayOfWeek">
+          <label className={styles.label} htmlFor="dow">
             Day of Week
           </label>
           <select
-            id="dayOfWeek"
-            name="dayOfWeek"
+            id="dow"
+            name="dow"
             className={styles.select}
-            value={formData.dayOfWeek}
+            value={formData.dow}
             onChange={handleChange}
           >
             <option value="">Select day</option>
@@ -189,14 +190,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="vehicleType">
+          <label className={styles.label} htmlFor="vehicle_type">
             Vehicle Type
           </label>
           <select
-            id="vehicleType"
-            name="vehicleType"
+            id="vehicle_type"
+            name="vehicle_type"
             className={styles.select}
-            value={formData.vehicleType}
+            value={formData.vehicle_type}
             onChange={handleChange}
           >
             <option value="">Select vehicle type</option>
@@ -209,14 +210,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="driverAction">
+          <label className={styles.label} htmlFor="driver_action">
             Driver Action
           </label>
           <select
-            id="driverAction"
-            name="driverAction"
+            id="driver_action"
+            name="driver_action"
             className={styles.select}
-            value={formData.driverAction}
+            value={formData.driver_action}
             onChange={handleChange}
           >
             <option value="">Select driver action</option>
@@ -228,14 +229,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="impactType">
+          <label className={styles.label} htmlFor="impact_type">
             Impact Type
           </label>
           <select
-            id="impactType"
-            name="impactType"
+            id="impact_type"
+            name="impact_type"
             className={styles.select}
-            value={formData.impactType}
+            value={formData.impact_type}
             onChange={handleChange}
           >
             <option value="">Select impact type</option>
@@ -248,14 +249,14 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="ageRange">
+          <label className={styles.label} htmlFor="age_range">
             Age Range
           </label>
           <select
-            id="ageRange"
-            name="ageRange"
+            id="age_range"
+            name="age_range"
             className={styles.select}
-            value={formData.ageRange}
+            value={formData.age_range}
             onChange={handleChange}
           >
             <option value="">Select age range</option>
@@ -277,6 +278,7 @@ export default function SeverityRisk({ neighbourhood }: SeverityRiskProps) {
           Predict Severity Risk
         </button>
       </form>
+      <p>Prediction: {prediction}</p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import styles from "./collisionRisk.module.css"
 import mapboxgl from 'mapbox-gl';
-import { fetchKernalDensityPrediction } from './fetchPredictions';
+import { fetchKernalDensityPrediction } from '../fetchPredictions';
 
 interface CollisionRiskProps {
   latitude: number;
@@ -42,7 +42,7 @@ export default function CollisionRisk({
     }
 
     const prediction = await fetchKernalDensityPrediction(latitude, longitude);
-    onPredictionUpdate(prediction.risk_class, prediction.risk_score);
+    onPredictionUpdate(prediction.collision_risk_class, prediction.collision_risk_score);
 
     // Create and add marker
     const marker_div: Element = document.createElement("div");
@@ -52,7 +52,7 @@ export default function CollisionRisk({
       "Medium Risk": "medium",
       "High Risk": "high",
     };
-    marker_div.className = "marker " + colorMap[prediction.risk_class];
+    marker_div.className = "marker " + colorMap[prediction.collision_risk_class];
     
     new mapboxgl.Marker(marker_div)
       .setLngLat([longitude, latitude])

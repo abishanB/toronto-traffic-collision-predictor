@@ -16,4 +16,15 @@ export const fetchHood = async (lat: number, long: number) => {
   return await res.json()
 };
 
+export const fetchSeverityRisk = async (features: object) => {
+  const res = await fetch("http://127.0.0.1:8000/predict/rf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(features),
+  });
+  return await res.json()
+};
+
+
+
 

@@ -1,8 +1,8 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import CollisionRisk from "./collisionRisk";
-import SeverityRisk from "./severityRisk";  
+import CollisionRisk from "./collisionRisk/collisionRisk";
+import SeverityRisk from "./severityRisk/severityRisk";  
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
 import { fetchHood } from './fetchPredictions';
@@ -26,9 +26,9 @@ export default function Home() {
   const [longitude, setLongitude] = useState<number>(INITIAL_CENTER[0]);
 
   const [currRiskScore, setCurrRiskScore] = useState<number>(0.0);
-  const [currPrediction, setCurrPrediction] = useState<string>("NA");
+  const [currPrediction, setCurrPrediction] = useState<string>("UNKNOWN");
 
-  const [currHood, setCurrHood] = useState<string>("NA");
+  const [currHood, setCurrHood] = useState<string>("");
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -60,10 +60,10 @@ export default function Home() {
   }, []);
 
   const handleMapClick = async(e: mapboxgl.MapMouseEvent) => {
-    const { lat, lng } = e.lngLat;
+    let { lat, lng } = e.lngLat;
     setLatitude(lat);
     setLongitude(lng);
-    const hood = await fetchHood(lat, lng)
+    let hood = await fetchHood(lat, lng)
     setCurrHood(hood.neighbourhood_name);
   };
 
