@@ -81,8 +81,6 @@ export default function Home() {
         latitude={latitude}
         longitude={longitude}
         hood={currHood}
-        onLatitudeChange={(value: number) => setLatitude(value)}
-        onLongitudeChange={(value: number) => setLongitude(value)}
         mapRef={mapRef}
         onPredictionUpdate={(prediction: string, score: number) => {
           setCurrPrediction(prediction);

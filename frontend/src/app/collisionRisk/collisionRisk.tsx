@@ -7,35 +7,19 @@ interface CollisionRiskProps {
   latitude: number;
   longitude: number;
   hood: string;
-  onLatitudeChange: (value: number) => void;
-  onLongitudeChange: (value: number) => void;
   mapRef: React.RefObject<mapboxgl.Map | null>;
   onPredictionUpdate: (prediction: string, score: number) => void;
 }
-
 
 export default function CollisionRisk({
   latitude,
   longitude,
   hood,
-  onLatitudeChange,
-  onLongitudeChange,
   mapRef,
   onPredictionUpdate
 }: CollisionRiskProps) {
   const inputStep: number = 0.001;// step size for lat and long fields
   const [errorMsg, setErrorMsg] = useState<string>(' ');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const numValue: number = value === '' ? 0 : parseFloat(value);
-    
-    if (name === 'latitude') {
-      onLatitudeChange(numValue);
-    } else if (name === 'longitude') {
-      onLongitudeChange(numValue);
-    }
-  };
 
   const handlePredict = async () => {
     if (!mapRef.current) return;
@@ -82,10 +66,9 @@ export default function CollisionRisk({
             id="latitude"
             name="latitude"
             value={latitude.toFixed(6)}
-            onChange={handleInputChange}
             step={inputStep}
             placeholder="Enter latitude"
-            
+            readOnly
           />
         </div>
         <div className={styles['input-group']}>
@@ -95,10 +78,9 @@ export default function CollisionRisk({
             id="longitude"
             name="longitude"
             value={longitude.toFixed(6)}
-            onChange={handleInputChange}
             step={inputStep}
             placeholder="Enter longitude"
-            
+            readOnly
           />
         </div>
       </div>

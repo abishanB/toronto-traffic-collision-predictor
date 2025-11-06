@@ -51,6 +51,7 @@ def get_neighbourhood(coords: Coordinates) -> object:
   hood_name, hood_number = find_neighbourhood_by_coords(
     coords.lat, coords.long)
   return {
+      "status": "OK",
       "neighbourhood_name": hood_name,
       "neighbourhood_number": hood_number,
       "lat": coords.lat,
