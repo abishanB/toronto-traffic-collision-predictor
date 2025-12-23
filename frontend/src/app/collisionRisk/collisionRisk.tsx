@@ -1,6 +1,6 @@
 import styles from "./collisionRisk.module.css"
 import mapboxgl from 'mapbox-gl';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { fetchKernalDensityPrediction } from '../fetchPredictions';
 import './popup.css';
 
@@ -12,6 +12,10 @@ interface CollisionRiskProps {
   removeSelectedMarker: () => void;
 }
 
+function coordKey(lat: number, lng: number): string{
+  return `${lat.toFixed(5)},${lng.toFixed(5)}`;
+}
+
 export default function CollisionRisk({
   latitude,
   longitude,
@@ -21,17 +25,29 @@ export default function CollisionRisk({
 }: CollisionRiskProps) {
   const inputStep: number = 0.001;// step size for lat and long fields
   const [errorMsg, setErrorMsg] = useState<string>('');
- 
+
+  const predictedLocationsRef = useRef(new Set());
+
+
   const handlePredict = async () => {
     if (!mapRef.current) return;
     if (hood === 'Unknown') {
       setErrorMsg('Invalid Coordinates');
       return;
     }
+
     if (!isFinite(latitude) || !isFinite(longitude)) {
       setErrorMsg('Please enter valid coordinates');
       return;
     }
+
+    const key = coordKey(latitude, longitude);  
+    if (predictedLocationsRef.current.has(key)) {
+      setErrorMsg('Already Predicted Here');
+      return;
+    }
+
+    predictedLocationsRef.current.add(key);
     setErrorMsg('');
 
     const prediction = await fetchKernalDensityPrediction(latitude, longitude);
@@ -59,8 +75,8 @@ export default function CollisionRisk({
             <p>Lon: ${Number(longitude.toFixed(4))}</p>
          </div>`
       )
-  )
-  .addTo(mapRef.current);
+    )
+    .addTo(mapRef.current);
   };
 
   return (
