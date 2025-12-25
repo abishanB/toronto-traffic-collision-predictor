@@ -1,12 +1,41 @@
-.collisionRisk{
+.collisionRisk {
+  position: absolute;
   top: 30%;
   left: 0;
-  max-width: 16vw;
+
+  max-width: 300px;
+  max-height: 265px;
+
+  overflow: hidden;
+  background-color: rgb(35 55 75 / 90%);
+  color: #fff;
+  font-family: monospace;
+  z-index: 1;
+  margin: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  transition: 0.28s;
+}
+
+.hidden {
+  max-height: 265px;
+  max-width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 .collisionRisk p{
   font-size: 0.7rem;
   margin-bottom: 10px;
 }
+.collisionRisk h4 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
 .latLongGroup {
   display: flex;
   flex-direction: column;
@@ -49,3 +78,11 @@
   padding: 0;
 }
 
+
+.testButton {
+  top: 70%;
+  left: 0;
+  width: 60px;
+  max-width: 60px;
+  
+}
