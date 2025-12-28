@@ -3,7 +3,7 @@
   left: 0;
 
   max-width: 300px;
-  max-height: 265px;
+  max-height: 320px;
 
   overflow: hidden;
   background-color: rgb(35 55 75 / 90%);
@@ -43,13 +43,19 @@
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.9);
   color: #333;
-  font-size: 14px;
+  font-size: 0.9rem;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: #4a90e2;
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+
+.latLongGroup > .input-group:nth-child(3) input {
+  /* neighbouhood field has smaller font*/
+  font-size: 0.8rem
 }
 
 .input-group input::placeholder {

@@ -111,6 +111,17 @@ export default function CollisionRisk({
             readOnly
           />
         </div>
+        <div className={styles['input-group']}>
+          <label htmlFor="Neighbourhood">Neighbourhood</label>
+          <input
+            type="string"
+            id="neighbourhood"
+            name="neighbourhood"
+            value={hood}
+            placeholder=""
+            readOnly
+          />
+        </div>
       </div>
       <p className={styles.errorMsg}>{errorMsg}</p>
        <button 
