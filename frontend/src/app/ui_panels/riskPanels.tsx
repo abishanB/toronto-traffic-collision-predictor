@@ -12,6 +12,8 @@ interface RiskPanelsProps {
   hood: string;
   mapRef: React.RefObject<mapboxgl.Map | null>;
   removeSelectedMarker: () => void;
+  showNeighbourhoods: boolean;
+  setShowNeighbourhoods: (show: boolean) => void;
 }
 
 export default function RiskPanels({
@@ -20,6 +22,8 @@ export default function RiskPanels({
   hood,
   mapRef,
   removeSelectedMarker,
+  showNeighbourhoods,
+  setShowNeighbourhoods,
 }: RiskPanelsProps) {
   const [showCollisionPanel, setShowCollisionPanel] = useState<boolean>(true);
   const [showSeverityPanel, setShowSeverityPanel] = useState<boolean>(false);
@@ -65,7 +69,7 @@ export default function RiskPanels({
         <button onClick={showPanelToggle}>
           <img src="/switch.svg" alt="Switch Panel" />
         </button>     
-      </div>
+      </div>     
     </>
   )
 }

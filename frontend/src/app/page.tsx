@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import RiskPanels from "./ui_panels/riskPanels";
+import NeighbourhoodLayers from "./NeighbourhoodLayers";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
 import { fetchHood } from './fetchPredictions';
@@ -26,6 +27,7 @@ export default function Home() {
   const [longitude, setLongitude] = useState<number>(INITIAL_CENTER[0]);
 
   const [currHood, setCurrHood] = useState<string>("");
+  const [showNeighbourhoods, setShowNeighbourhoods] = useState<boolean>(true);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -103,6 +105,7 @@ export default function Home() {
   return (
     <>
       <div id="map-container" ref={mapContainerRef} />
+      <NeighbourhoodLayers map={mapRef.current} showNeighbourhoods={showNeighbourhoods} />
       <div className="temp">
         {/* <h3>Collision Risk Score: {currRiskScore}</h3>
         <h3>Collision Risk Class: {currPrediction}</h3>
@@ -110,12 +113,27 @@ export default function Home() {
         Longitude: {mousePos[0].toFixed(4)} | Latitude: {mousePos[1].toFixed(4)} |
         Zoom: {zoom.toFixed(2)}
       </div>
+      <div className={'container neighbourhood-toggle'}>
+        <label htmlFor="neighbourhood-toggle" className='toggle-label'>
+          Show Neighbourhoods
+        </label>
+        <input
+          id="neighbourhood-toggle"
+          type="checkbox"
+          checked={showNeighbourhoods}
+          onChange={(e) => setShowNeighbourhoods(e.target.checked)}
+          className='toggle-checkbox'
+        />
+      </div>
+
       <RiskPanels 
         latitude={latitude}
         longitude={longitude}
         hood={currHood}
         mapRef={mapRef}
         removeSelectedMarker={removeSelectedMarker}
+        showNeighbourhoods={showNeighbourhoods}
+        setShowNeighbourhoods={setShowNeighbourhoods}
       />
     </> 
   );

@@ -22,9 +22,9 @@
   font-family: monospace;
   z-index: 1;
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 16px;
+  top: 20px;
+  left: 20px;
+  
   border-radius: 4px;
 }
 
@@ -88,3 +88,29 @@ h4 {
   text-align: center;
   margin-bottom: 10px;
 }
+
+.neighbourhood-toggle {
+  top: 60px;
+  left: 20px;
+  border-radius: 8px;
+  background-color: rgb(35 55 75 / 90%);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.toggle-label {
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.toggle-checkbox {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: #088;
+}
+
+
