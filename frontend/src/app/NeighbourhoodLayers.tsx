@@ -26,7 +26,7 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
             id: "neighbourhoods-fill",
             type: "fill",
             source: "neighbourhoods",
-            layout: {},
+            layout: {visibility: "none"},
             paint: {
               "fill-color": "#088",
               "fill-opacity": 0.2,
@@ -41,6 +41,7 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
             layout: {
               "line-join": "round",
               "line-cap": "round",
+               visibility: "none",
             },
             paint: {
               "line-color": "#088",
@@ -60,17 +61,13 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
   useEffect(() => {
     if (!map) return;
 
-    try {
-      if (showNeighbourhoods) {
-        map.setLayoutProperty("neighbourhoods-fill", "visibility", "visible");
-        map.setLayoutProperty("neighbourhoods-outline", "visibility", "visible");
-      } else {
-        map.setLayoutProperty("neighbourhoods-fill", "visibility", "none");
-        map.setLayoutProperty("neighbourhoods-outline", "visibility", "none");
-      }
-    } catch (error) {
-      console.error("Error toggling neighbourhood visibility:", error);
-    }
+    if (!map.getLayer("neighbourhoods-fill")) return;
+    if (!map.getLayer("neighbourhoods-outline")) return;
+
+    const visibility = showNeighbourhoods ? "visible" : "none";
+
+    map.setLayoutProperty("neighbourhoods-fill", "visibility", visibility);
+    map.setLayoutProperty("neighbourhoods-outline", "visibility", visibility);
   }, [showNeighbourhoods, map]);
 
   return null;

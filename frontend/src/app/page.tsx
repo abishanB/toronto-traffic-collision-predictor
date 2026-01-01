@@ -27,7 +27,7 @@ export default function Home() {
   const [longitude, setLongitude] = useState<number>(INITIAL_CENTER[0]);
 
   const [currHood, setCurrHood] = useState<string>("");
-  const [showNeighbourhoods, setShowNeighbourhoods] = useState<boolean>(true);
+  const [showNeighbourhoods, setShowNeighbourhoods] = useState<boolean>(false);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
