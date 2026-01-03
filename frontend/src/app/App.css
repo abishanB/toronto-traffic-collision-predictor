@@ -14,7 +14,7 @@
 .mapboxgl-canvas {
   cursor: crosshair !important;
 }
-.temp {
+.map-status {
   background-color: rgb(35 55 75 / 90%);
   color: #fff;
   padding: 6px 12px;
@@ -25,35 +25,6 @@
   left: 20px;
   
   border-radius: 4px;
-}
-
-.coordinate-inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.predict-button {
-  width: fit-content;
-  padding: 10px 12px;
-  
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-left: auto;
-  margin-right: auto; 
-}
-
-.predict-button:hover {
-  background-color: #357abd;
-}
-
-.predict-button:active {
-  background-color: #2d6da3;
 }
 
 .container {

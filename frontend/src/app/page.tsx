@@ -2,7 +2,6 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import RiskPanels from "./riskPanels/riskPanels";
-
 import MapLayers from "./mapLayers/mapLayers";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
@@ -60,15 +59,11 @@ export default function Home() {
   return (
     <>
       <div id="map-container" ref={mapContainerRef} />
-      <div className="temp">
-        {/* <h3>Collision Risk Score: {currRiskScore}</h3>
-        <h3>Collision Risk Class: {currPrediction}</h3>
-        <h3>Current Hood: {currHood}</h3> */}
+      <div className="map-status">
         Longitude: {mousePos[0].toFixed(4)} | Latitude: {mousePos[1].toFixed(4)} |
         Zoom: {zoom.toFixed(2)}
       </div>
-      
-
+    
       <MapLayers mapRef={mapRef} />
       
       <RiskPanels mapRef={mapRef}/>

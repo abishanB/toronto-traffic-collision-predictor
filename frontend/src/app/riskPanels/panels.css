@@ -24,3 +24,24 @@
   height: var(--switch-btn-size);
 }
 
+.predict-button {
+  width: fit-content;
+  padding: 10px 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.predict-button:hover {
+  background-color: #357abd;
+}
+
+.predict-button:active {
+  background-color: #2d6da3;
+}

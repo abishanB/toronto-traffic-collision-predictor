@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import mapboxgl from "mapbox-gl";
 import CollisionRisk from "../collisionRisk/collisionRisk";
 import SeverityRisk from "../severityRisk/severityRisk";
-import styles from "./panels.module.css";
+import "./panels.css";
 import { fetchHood } from '../fetchPredictions';
 // Delay in ms for closing one panel and opening the other
 const PANEL_SWITCH_DELAY_MS: number = 140;
@@ -110,7 +110,7 @@ export default function RiskPanels({
       />
       <SeverityRisk neighbourhood={currHood} showSeverityPanel={showSeverityPanel} />
 
-      <div className={`container ${styles.switch}`}>
+      <div className={`container switch`}>
         <button onClick={showPanelToggle}>
           <img src="/switch.svg" alt="Switch Panel" />
         </button>     
