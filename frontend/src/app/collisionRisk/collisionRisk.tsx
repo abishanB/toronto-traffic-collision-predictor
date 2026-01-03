@@ -69,12 +69,13 @@ export default function CollisionRisk({
     
     new mapboxgl.Marker(marker_div)
       .setLngLat([longitude, latitude])
-      .setPopup(new mapboxgl.Popup({ offset: 25 })
+      .setPopup(new mapboxgl.Popup({ offset: 25, className: "collision-popup" })
       .setHTML(
         `<div class="popup-content">
             <h3>Collision Risk: ${prediction.collision_risk_class}</h3>
-            <p>Lat: ${Number(latitude.toFixed(4))}</p>
-            <p>Lon: ${Number(longitude.toFixed(4))}</p>
+            <p>${hood}</p>
+            <p>Lat: ${Number(latitude.toFixed(6))}</p>
+            <p>Lon: ${Number(longitude.toFixed(6))}</p>
          </div>`
       )
     )

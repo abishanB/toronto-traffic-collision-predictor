@@ -1,20 +1,21 @@
+.mapboxgl-popup-content { 
+  /* Override mapbox style */
+  padding: 6px 8px !important;
+  border-radius: 4px !important;
+}
+
 .popup-content {
   font-family: Arial, sans-serif;
-  color: #333;
+  color: #161515;
   width: fit-content;
   height: fit-content;
-  margin: 0;
-  padding: 0px;
+  line-height: 1.25;
 }
 .popup-content h3 {
-  padding: 0;
-  margin: 0;
   font-size: 0.775rem;
 }
 
 .popup-content p {
-  padding: 0;
-  margin: 0;
   font-size: 0.7rem;
 }
 
