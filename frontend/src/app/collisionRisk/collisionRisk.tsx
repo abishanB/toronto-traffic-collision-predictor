@@ -89,17 +89,17 @@ export default function CollisionRisk({
       <p>Click Map To Set Coordinates</p>
       <div className={styles.latLongGroup}>
         <div className={styles['input-group']}>
-          <label htmlFor="latitude">Latitude:</label>
+          <label htmlFor="Neighbourhood">Neighbourhood</label>
           <input
-            type="number"
-            id="latitude"
-            name="latitude"
-            value={latitude.toFixed(6)}
-            step={inputStep}
-            placeholder="Enter latitude"
+            type="string"
+            id="neighbourhood"
+            name="neighbourhood"
+            value={hood}
+            placeholder=""
             readOnly
           />
         </div>
+
         <div className={styles['input-group']}>
           <label htmlFor="longitude">Longitude:</label>
           <input
@@ -112,14 +112,16 @@ export default function CollisionRisk({
             readOnly
           />
         </div>
+
         <div className={styles['input-group']}>
-          <label htmlFor="Neighbourhood">Neighbourhood</label>
+          <label htmlFor="latitude">Latitude:</label>
           <input
-            type="string"
-            id="neighbourhood"
-            name="neighbourhood"
-            value={hood}
-            placeholder=""
+            type="number"
+            id="latitude"
+            name="latitude"
+            value={latitude.toFixed(6)}
+            step={inputStep}
+            placeholder="Enter latitude"
             readOnly
           />
         </div>
