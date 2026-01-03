@@ -41,10 +41,6 @@ export default function Home() {
     mapRef.current = map; // assign to ref once created
 
     if (!mapRef.current) return;
-    
-    mapRef.current.on("click", (e: mapboxgl.MapMouseEvent) => {
-       console.log("Map eeeeeclicked at: ", e.lngLat);
-    });
 
     mapRef.current.on("move", () => {
       const mapCenter = map.getCenter();
