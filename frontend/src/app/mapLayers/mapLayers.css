@@ -29,3 +29,19 @@
   cursor: pointer;
   accent-color: #088;
 }
+
+.neighbourhood-popup {
+  font-family: Arial, sans-serif;
+  font-size: 0.625rem;
+  color: #161515;
+  width: fit-content;
+  height: fit-content;
+  line-height: 1.25;
+}
+
+.mapboxgl-popup-content { 
+  /* Override mapbox style */
+  padding: 6px 8px !important;
+  border-radius: 4px !important;
+}
+

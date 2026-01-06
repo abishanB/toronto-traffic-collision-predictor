@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
 
 interface NeighbourhoodLayersProps {
   map: mapboxgl.Map | null;
@@ -6,6 +7,8 @@ interface NeighbourhoodLayersProps {
 }
 
 const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersProps) => {
+  const popupRef = useRef<mapboxgl.Popup | null>(null);
+
   useEffect(() => {
     if (!map) return;
 
@@ -48,12 +51,52 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
               "line-width": 2,
             },
           });
+
+          // Create popup for hover
+          if (!popupRef.current) {
+            popupRef.current = new mapboxgl.Popup({
+              closeButton: false,
+              closeOnClick: false,
+            });
+          }
+
+          // Handle mousemove on neighbourhoods fill layer
+          map.on("mousemove", "neighbourhoods-fill", (e) => {
+            map.getCanvas().style.cursor = "pointer";
+            if (e.features && e.features.length > 0) {
+              const feature = e.features[0];
+              const properties = feature.properties;
+              let neighbourhoodName = "Unknown";
+              if (properties) {
+               neighbourhoodName = properties.name || properties.AREA_NAME || "Unknown";
+              }
+              const coordinates = (e.lngLat as any);
+              popupRef.current?.setLngLat(coordinates)
+                .setHTML(`
+                  <div class='neighbourhood-popup'>
+                  ${neighbourhoodName}
+                  </div>`)
+                .addTo(map);
+            }
+          });
+
+          map.on("mouseleave", "neighbourhoods-fill", () => {
+            map.getCanvas().style.cursor = "";
+            popupRef.current?.remove();
+          });
         }
       })
       .catch((error) => console.error("Error loading GeoJSON:", error));
 
     return () => {
-      // Cleanup is handled by Mapbox when component unmounts
+      // Cleanup event listeners
+      if (map && map.getLayer("neighbourhoods-fill")) {
+        // @ts-ignore
+        map.off("mousemove", "neighbourhoods-fill");
+        // @ts-ignore
+        map.off("mouseleave", "neighbourhoods-fill");
+      }
+      popupRef.current?.remove();
     };
   }, [map]);
 
