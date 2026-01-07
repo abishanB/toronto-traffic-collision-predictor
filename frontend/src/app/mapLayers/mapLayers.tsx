@@ -7,7 +7,7 @@ interface MapLayersProps {
   mapRef: React.RefObject<mapboxgl.Map | null>;
 }
 
-export default function mapLayers({mapRef}: MapLayersProps) {
+export default function MapLayers({mapRef}: MapLayersProps) {
   const [showNeighbourhoods, setShowNeighbourhoods] = useState<boolean>(false);
   const [showHeatmap, setShowHeatmap] = useState<boolean>(false);
 

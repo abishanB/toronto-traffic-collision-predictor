@@ -70,7 +70,7 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
               if (properties) {
                neighbourhoodName = properties.name || properties.AREA_NAME || "Unknown";
               }
-              const coordinates = (e.lngLat as any);
+              const coordinates = (e.lngLat);
               popupRef.current?.setLngLat(coordinates)
                 .setHTML(`
                   <div class='neighbourhood-popup'>
@@ -91,9 +91,9 @@ const NeighbourhoodLayers = ({ map, showNeighbourhoods }: NeighbourhoodLayersPro
     return () => {
       // Cleanup event listeners
       if (map && map.getLayer("neighbourhoods-fill")) {
-        // @ts-ignore
+        // @ts-expect-error - TypeScript issue with off method
         map.off("mousemove", "neighbourhoods-fill");
-        // @ts-ignore
+        // @ts-expect-error - TypeScript issue with off method
         map.off("mouseleave", "neighbourhoods-fill");
       }
       popupRef.current?.remove();

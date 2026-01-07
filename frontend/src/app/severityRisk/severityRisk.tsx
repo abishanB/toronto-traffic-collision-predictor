@@ -35,7 +35,7 @@ export default function SeverityRisk({ neighbourhood, showSeverityPanel }: Sever
     age_range: '',
     neighbourhood: neighbourhood
   });
-  const [prediction, setPrediction] = useState<any>(null);
+  const [prediction, setPrediction] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;

@@ -35,6 +35,23 @@ export default function RiskPanels({
     setShowSeverityPanel(false)
   }
 
+  const handleMapClick = async(e: mapboxgl.MapMouseEvent) => {
+    const target = e.originalEvent.target as HTMLElement;
+    if (target.closest(".mapboxgl-marker") || target.closest(".mapboxgl-popup")) {
+      //ignore clicks on existing markers or popups
+      return;
+    }
+    
+    const { lat, lng } = e.lngLat;
+    setLatitude(lat);
+    setLongitude(lng);
+    
+    const hood = await fetchHood(lat, lng)
+    setCurrHood(hood.neighbourhood_name);
+    
+    updateSelectedMarker(lng, lat);
+  };
+
   useEffect(() => {//set up map click listener
     const map = mapRef.current;
     if (!map) return;
@@ -45,7 +62,7 @@ export default function RiskPanels({
     return () => {
       map.off("click", handleClick);
     };
-  }, [mapRef.current]);
+  }, [handleMapClick, mapRef]);
 
   useEffect(() => {
     if (!showCollisionPanel && !showSeverityPanel){
@@ -62,24 +79,6 @@ export default function RiskPanels({
       }, PANEL_SWITCH_DELAY_MS)
     }
   }, [showSeverityPanel]);
-
-
-  const handleMapClick = async(e: mapboxgl.MapMouseEvent) => {
-    const target = e.originalEvent.target as HTMLElement;
-    if (target.closest(".mapboxgl-marker") || target.closest(".mapboxgl-popup")) {
-      //ignore clicks on existing markers or popups
-      return;
-    }
-    
-    let { lat, lng } = e.lngLat;
-    setLatitude(lat);
-    setLongitude(lng);
-    
-    let hood = await fetchHood(lat, lng)
-    setCurrHood(hood.neighbourhood_name);
-    
-    updateSelectedMarker(lng, lat);
-    };
 
   const removeSelectedMarker = (): void => { 
     if (selectedMarkerRef.current) {
